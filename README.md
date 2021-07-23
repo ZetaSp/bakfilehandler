@@ -17,3 +17,7 @@ Open folder;
 or Cancel.
 
 That's all.
+
+## License
+
+Oh, [WTFPL](http://wtfpl.net).
