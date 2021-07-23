@@ -2,11 +2,12 @@ Windows Registry Editor Version 5.00
 
 ;@echo off
 ;cls
+;%1 echo The installer needs admin to write to your registry.
 ;%1 mshta vbscript:CreateObject("Shell.Application").ShellExecute("cmd.exe","/c%~s0 rem","","runas",1)(window.close)&&goto :eof
 ;cd /d %~dp0
-;echo ==== Zetaspace Bak File Handler ====
+;echo ==== Bak File Handler ====
 ;echo.
-if not "%2%2"=="" goto :handler
+if not ""%2%2""=="""" goto :handler
 
 ;title .Bak File Handler Installing...
 ;echo [I] to install
@@ -32,7 +33,9 @@ if not "%2%2"=="" goto :handler
 ;set bak=%2
 ;set ori="%bak:~1,-5%"
 ;echo Backup: %bak%
+;if not exist %bak% echo   (not exist)
 ;echo Origin: %ori%
+;if not exist %ori% echo   (not exist)
 ;echo.
 ;echo [U] to update  (file --^> .bak)
 ;echo [R] to restore (file ^<-- .bak)
