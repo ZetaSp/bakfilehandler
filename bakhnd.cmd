@@ -59,7 +59,8 @@ if not ""%2%2""=="""" goto :handler
 :h3
 ;if exist %ori% del %ori%
 ;copy %bak% %ori%
-;del %bak%
+;rem del %bak%
+;mshta vbscript:CreateObject("Shell.Application").Namespace(0).ParseName("%bak:~1,-1%").InvokeVerb("delete")(window.close)
 ;goto :eof
 :h4
 ;mshta vbscript:CreateObject("Shell.Application").Namespace(0).ParseName("%bak:~1,-1%").InvokeVerb("delete")(window.close)
