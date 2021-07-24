@@ -40,10 +40,11 @@ if not ""%2%2""=="""" goto :handler
 ;echo [U] to update  (file --^> .bak)
 ;echo [R] to restore (file ^<-- .bak)
 ;echo [X] to restore and delete
+;echo [D] to delete
 ;echo [O] to open folder
 ;echo [C] to cancel
 ;echo.
-;choice /c urxoc /n /m "Press...>"
+;choice /c urxdoc /n /m "Press...>"
 ;goto :h%errorlevel%>nul
 ;goto :eof
 :h1
@@ -61,6 +62,9 @@ if not ""%2%2""=="""" goto :handler
 ;del %bak%
 ;goto :eof
 :h4
+;mshta vbscript:CreateObject("Shell.Application").Namespace(0).ParseName("%bak:~1,-1%").InvokeVerb("delete")(window.close)
+;goto :eof
+:h5
 ;for /f "delims=" %%i in ('echo %bak:~1,-1%') do set bakdir=%%~dpi
 ;mshta vbscript:CreateObject("Shell.Application").ShellExecute("%bakdir%","","","",0)(window.close)
 ;goto :eof
@@ -72,3 +76,5 @@ if not ""%2%2""=="""" goto :handler
 [HKEY_CLASSES_ROOT\backupfile\shell]
 [HKEY_CLASSES_ROOT\backupfile\shell\open]
 [HKEY_CLASSES_ROOT\backupfile\shell\open\command]
+[HKEY_CLASSES_ROOT\backupfile\DefaultIcon]
+@="%SystemRoot%\System32\shell32.dll,100"
